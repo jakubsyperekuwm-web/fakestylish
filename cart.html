@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Koszyk — Stylish</title>
+
+  <!-- korzystamy z tych samych styli co index.html -->
+  <link rel="stylesheet" href="css/vendor.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* drobne dodatkowe style do panelu koszyka */
+    .cart-page { padding: 40px 0; }
+    .cart-card { border: 1px solid #e9e9e9; padding: 16px; border-radius: 8px; background: #fff; }
+    .cart-item { display: flex; gap: 16px; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item img { width: 84px; height: auto; object-fit: cover; border-radius: 6px; }
+    .qty-controls { display:flex; gap:8px; align-items:center; }
+    .btn-empty { background: transparent; border: 1px dashed #ccc; padding: 6px 12px; cursor:pointer; }
+    .price { min-width:110px; text-align:right; font-weight:700; }
+    .cart-summary { border-left:1px solid #f0f0f0; padding-left: 24px; }
+    @media (max-width: 767px) {
+      .cart-grid { grid-template-columns: 1fr; }
+      .cart-summary { border-left:none; padding-left:0; margin-top:20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- (możesz wstawić tutaj header z index.html jeśli chcesz zachować identyczny nagłówek) -->
+  <header class="site-header">
+    <div class="container-lg py-3 d-flex justify-content-between align-items-center">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/main-logo.png" alt="logo" style="height:40px;">
+      </a>
+      <nav>
+        <a href="men.html" class="me-3">Mężczyźni</a>
+        <a href="women.html" class="me-3">Kobiety</a>
+        <a href="index.html">Sklep</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container cart-page">
+    <h1 class="mb-4">Twój koszyk</h1>
+
+    <div class="d-grid cart-grid" style="grid-template-columns: 1fr 340px; gap:24px;">
+      <section class="cart-card" id="cart-items-container">
+        <!-- elementy koszyka będą renderowane przez JS -->
+        <div id="cart-empty" style="display:none; text-align:center; padding:40px 0;">
+          <p class="fs-5">Twój koszyk jest pusty.</p>
+          <a href="index.html" class="btn btn-black">Kontynuuj zakupy</a>
+        </div>
+      </section>
+
+      <aside class="cart-card cart-summary">
+        <h3>Podsumowanie</h3>
+        <div class="d-flex justify-content-between py-2">
+          <span>Produkty (ilość):</span>
+          <span id="summary-count">0</span>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+          <span>Wartość produktów:</span>
+          <strong id="summary-subtotal">0 zł</strong>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+          <span>Dostawa:</span>
+          <span id="summary-shipping">0 zł</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between py-2">
+          <span class="fs-6">Razem:</span>
+          <strong id="summary-total" class="fs-5">0 zł</strong>
+        </div>
+
+        <div class="mt-4 d-grid">
+          <button id="checkout-btn" class="btn btn-red">Przejdź do kasy</button>
+          <button id="clear-cart-btn" class="btn btn-outline-gray">Wyczyść koszyk</button>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="py-5 border-top text-center">
+    <div class="container">
+      <p>© Stylish — przykładowa stopka</p>
+    </div>
+  </footer>
+
+  <!-- wymagane skrypty (tak jak w index.html) -->
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/cart-sync.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
